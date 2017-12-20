@@ -1,7 +1,7 @@
-This script is a multiunctional blogging + Social Networking script that has a lot of features.
+This script is a multifunctional blogging + Social Networking script that has a lot of features.
 
 Feel free to check through.
 
 The script is made of PHP/HTML codes and a mysql database.
 
-It also uses OOP struture and PDO database connection that makes it portable to any database type.
+It also uses OOP struture and PDO database connection that makes it portable to any database type and alsomakes editing of codes easier
