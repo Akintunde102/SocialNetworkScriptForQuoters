@@ -1,0 +1,20 @@
+<div class="lt" style="position: fixed;left: 2.1%;top: 9%;width: 18.5%;font-size: 15px;"><div class="box box-primary">
+                <div class="box-body box-profile">
+                  <img class="profile-user-img img-responsive" src="<?php 
+				  
+				  $abD['image'] = trim ($abD['image']);
+				  $abD['bio'] = trim ($abD['bio']);
+				  $abD['email'] = trim ($abD['email']);
+				  if (!empty($abD['image'])){$abDIm = $abD['image'];}
+				  else {$abDIm = 'images/men.png';}
+				  if (!empty($abD['bio'])){$abDBio = $abD['bio'];}
+				  else {$abDBio = 'empty bio';}
+				  echo 'http://'.$this->site_address.'/'.$abDIm; 
+				  ?>" alt="User profile picture">
+                  <h3 class="profile-username text-center"><?=$abD['firstname']?></h3>
+                  <p class="text-muted text-center" style="border: 1px solid #ddd;background: #000;border-radius: 3px;"><?=$abDBio?></p>
+
+                </div><!-- /.box-body -->
+				<?php if (@$this->user_email == $abD['email']){echo '<a href="http://'.$this->site_address.'/profile.html" class="btn btn-success">Edit Profile</a>';} ?>
+              </div>
+			  </div>

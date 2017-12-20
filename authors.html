@@ -1,0 +1,125 @@
+<?php include('inc.php') ?>
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        
+     <?php include('store/head.html') ?>
+    </head>
+
+    <body>
+        
+        <!-- Top menu -->
+		
+		
+		<?php if ($deviceType != 'computer'){ include('store/header_mobile.html');}else{ include('store/header.html');}?>
+		
+		
+        <!--  Quotes -->
+        <div class="services-container" style="margin-top: 20px;" >
+	        	<div class="row">
+					
+		<?php  
+			
+			/**
+			 * Once you have created an PDO_Pagination object you can
+			 * set the following parameters:
+			 * 
+			 * @example
+			 *   $pagination->setLimitPerPage( $limit );
+			 *   $pagination->setPaginator( $paginator );
+			 *   $pagination->setRange( $range );
+			 *   $pagination->setSQL( $string );
+			 *  
+			 */
+			
+			
+			
+			/** Duh, the SQL itself **/
+			
+			$pagination->setSQL( "SELECT * FROM `author` Where NOT (`author` = '') GROUP BY author ORDER BY author ASC","SELECT * FROM `author` Where NOT (`author` = '') GROUP BY Tags ORDER BY author ASC {numspace} " );
+			
+			$pagination->setPaginator( 'page' );
+			
+			$results = $pagination->getSQL('All','num');
+		
+			/**
+			 * The result bar will inform you if no results were found
+			 * so you should keep it outside the controll structure below 
+			 */
+			 
+			 $b_d = 'Quotes By author'; 		
+			echo "
+			<div class=\"row\">
+			<div class=\"col-md-8\">
+			</div>
+			</div>
+			";
+			if  ($deviceType != 'computer' )
+			{echo '<div>';}
+			else {echo '<div class="col-md-10"><div class="js-masonry" data-masonry-options=\'{ "itemSelector": ".item", "columnWidth": 30 }\'>
+			';}
+			
+			
+			if( $pagination->getTotalOfResults($results) > 0    ) {
+			
+				foreach( $results as $r ) {
+					$col = array('panel-red','panel-yellow','panel-green','panel-primary');
+					$luck = rand(0,3);
+					$panel_col = $col[$luck];
+					$r['author'] = trim($r['author']);
+						$tags_c = $wp->code($r['author'],'up');
+					if ($r['author'] != ''){
+					
+						if  ($deviceType == 'phone' )
+					{echo '	<div class="col-md-5">';}
+					else {echo '<div class="item grid-item">';}
+					
+					
+					echo '
+
+					
+					<a href="http://'.$site_address.'/author/'.$tags_c.'-quotes"class="hover" ><div class="panel panel-default shadow"><div class="panel-body"><b style="font-size: 16px;  padding: 10px 15px;
+  border-bottom: 1px solid transparent;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;">
+					'.ucfirst($r['author']).' Quotes</b>
+					</div></div></a>
+					
+                    </div>
+					';
+				}
+				}
+			print '</div>';
+				print '</div>';
+				
+				if  ($deviceType != 'computer' ){
+				print '<div class="col-md-5">ADS SECTION</div>';}
+				else {
+				print '<div class="adsec col-md-2">ADS SECTION</div>';}
+				
+				print '</div>';	
+			
+			}
+			
+			
+			
+			
+		
+		?>
+	
+                    </div>		
+		</div>
+	        </div>
+        </div>
+        <!-- Footer -->
+	
+	<?php include('store/footer.html') ?>
+	
+	<?php include('store/foot.html') ?>	
+
+       
+
+    </body>
+
+</html>

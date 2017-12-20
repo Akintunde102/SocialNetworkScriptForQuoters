@@ -1,0 +1,55 @@
+                          <div class="row x_title">
+                                <div class="col-md-6">
+                                    <h3>Edit Profile &nbsp;&nbsp;&nbsp;<?php if (!empty($_GET['t'])){echo '<a href="http://'.$site_address.'/profile.html" class="btn btn-primary"><i class="fa fa-reply"></i>&nbsp;BACK</a>'; }?></h3>
+                                </div>
+                            <div class="clearfix"></div>
+                        
+<?php 
+if (!empty($_GET['t']))
+{
+if ($_GET['t'] == 'image'){
+ ?>
+<div style="font-size: 15px;">
+<div id="upload-wrapper">
+<div id="output"></div>
+<div id="progressbox" style="display:none;"><div id="progressbar"></div><div id="statustxt">0%</div></div>
+<h3>Upload Your Profile Pix</h3>
+<span class="">Image Type allowed: Jpeg, Jpg, Png and Gif. | Maximum Size 1 MB</span>
+<form action="http://<?=$site_address?>/processupload.php" onSubmit="return false" method="post" enctype="multipart/form-data" id="MyUploadForm">
+<input name="image_file" id="imageInput" type="file" />
+<input type="submit"  id="submit-btn" value="Upload" />
+<img src="images/ajax-loader.gif" id="loading-img" style="display:none;" alt="Please Wait"/>
+</form>
+</div>
+</div>
+<?php } else if ($_GET['t'] == 'bio'){?>
+<div style="font-size: 15px;">
+<div id="upload-wrapper">
+<span class="">Mini biography</span>
+<div id="fbio"> </div>
+<form action="http://<?=$site_address?>/addbio.php" class="addbio">
+ <div  id="bio-group">
+<textarea name="bio" type="file" class="form-control" placeholder="Just few lines..." rows="3"/> <?php if (!empty($_POST['bio'])){ echo htmlspecialchars($_POST['bio']);} ?></textarea>
+</div>
+<p class="antispam">Leave this empty: <input type="text" name="urlbio" /></p>
+<input type="submit"  class="btn btn-primary" value="Update" />
+</form>
+</div>
+</div>
+<?php } ?>
+<?php } else {?>
+<div style="font-size: 15px;">
+ <div class="col-md-3 col-sm-3 col-xs-12 bg-white">
+                                <div class="x_title">
+                                   <a href="?t=image" ><h2><small style="color: royalblue;">Update Profile Pix</small></h2></a>
+                                    <div class="clearfix"></div>
+                                </div>  
+								
+								<div class="x_title">
+                                   <a href="?t=bio"><h2><small style="color: royalblue;">Edit Biography</small></h2></a>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+							</div>
+
+<?php }?>

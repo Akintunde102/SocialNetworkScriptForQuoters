@@ -1,0 +1,108 @@
+<?php include('inc.php');$_SESSION['refer_back'] = $_SERVER['PHP_SELF'].'?qid='.$_GET['qid']; $user->restrict(); ?>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        
+     <?php include('store/head.html'); ?>
+    </head>
+
+    <body>    
+        <!-- Top menu -->
+		
+		
+		<?php if ($deviceType != 'computer'){ include('store/header_mobile.html');}else{ include('store/header.html');}?>
+		
+	<!--  Quotes -->
+        <div class="services-container" <?php if ($deviceType == 'computer'){echo 'style="height: 550px;"';} ?>>
+	        	<div class="row">
+					<?php 
+					if ($deviceType == 'computer'){$wp->lists(); $wp->adlist();	
+					echo '<div class="col-md-2">kjjkjk</div>';}
+					
+					?>
+				<?php 
+			if (!empty($_GET['qid']) && empty($_GET['bgi']))
+			{echo '<div class="col-md-5"><div class="row">';
+						$wpq = $wp->getquote();
+						echo "<div class=\"breadcrumb\">Pick A Background Image Below for the chosen quote</div>";
+				echo "<div class=\"breadcrumb quote-preview shadow\">Quote:<br/>".$wpq['Quote']."<br/><br/>
+				......".$wpq['Name']."</div>";		
+				
+				$dir = $site['basepath'].'/images/use';
+				$files =  scandir($dir,0);
+				
+				if (empty($_GET['page'])){$page_number = 1;}
+					else {$page_number = $_GET['page'];}
+				
+				if ($deviceType == 'phone'){$page_limit = 5;}
+				else {$page_limit = 6;}
+				$pictureCount = count($files);
+						for ($x = 2; $x < count($files);$x++){
+						
+						If ($x <= $page_limit * $page_number && $x > $page_limit * ($page_number - 1)){
+							  $fx = strtok($files[$x],'.');
+								if  ($deviceType == 'phone')
+								{echo '	<div class="col-md-5">'; 	echo'<div class="panel panel-default shadow">';}
+								else {echo '<div class="col-lg-4 col-xs-8 conv" style="padding: 5px 1px 5px 0px">';}
+								echo '<a href="convert.html?qid='.$_GET['qid'].'&bgi='.$fx.'">';
+								if ($deviceType == 'phone'){
+								echo '<img title="Click And Wait " data-toggle="tooltip" style="width:200;height:100;" src="'.$folder['QuoteBg'].'/'.$files[$x].'" />';}
+								else {
+								echo '<img title="Click And Wait " data-toggle="tooltip" width="150" height="150" src="'.$folder['QuoteBg'].'/'.$files[$x].'" />';}
+								
+								echo '</div>';
+										if  ($deviceType == 'phone'){ echo '</div>';}
+				
+										
+							}
+					
+				}
+				echo '</div>';
+										echo '<ul class="pagination">';
+
+if ($page_number > 1){
+echo '<li><a href="http://';
+echo $site_address.'/convert.html?qid='.$_GET['qid'];
+echo '&page=';
+echo $page_number - 1;
+echo '">Previous</a></li>';
+}
+
+if ($pictureCount >= ($page_number * $page_limit) ){
+echo '<li><a href="http://';
+echo $site_address.'/convert.html?qid='.$_GET['qid'];
+echo '&page=';
+echo $page_number + 1;
+echo '">Next</a></li>';
+}
+echo '</ul>';	
+				}
+				
+				else if (!empty($_GET['qid']) && !empty($_GET['bgi'])){
+			
+			if  ($deviceType == 'phone' )
+					{echo '<div>';}
+					else {echo '<div class="col-md-5" style="margin: 7% 0 0 0;">';}
+				$wp->TexttoImage();
+				if  ($deviceType == 'phone'){ echo '</div>';}
+				else {echo '</div>';}
+				}
+					print '</div>';
+					print '</div>';
+							
+							?>
+					</div>
+					</div>
+		</div>
+        </div>
+        <!-- Footer -->
+	
+	<?php include('store/footer.html') ?>
+	
+	<?php include('store/foot.html') ?>	
+
+       
+
+    </body>
+
+</html>

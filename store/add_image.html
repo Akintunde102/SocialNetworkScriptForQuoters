@@ -1,0 +1,41 @@
+<?php require_once('inc.php');?>
+                     <div class="col-md-4 rt2 shadow" ><div class="box-header with-border"> <h3 class="box-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="nav nav-tabs bar_tabs cg btn btn-block btn-success btn-lg sidea" style="text-align: center;border: none;
+    outline: none;
+    color: #fff;
+    background: #13779D;
+    text-decoration: none;
+    padding: 10px 12px 10px 11px;
+    height: 50.8px;
+    display: block;" > Add Image Quotes
+                          </a></h3></div>
+						  <div id="fresult"> </div>	                		
+                            	<div class="panel-collapse collapse" id="collapseOne" >
+								   <form class="form-horizontal form-label-left input_mask addquote" role="form" method="POST" action="http://<?=$this->site_address?>/addquote.php">
+								   
+                                        <div  id="quote-group" class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                            <textarea  class="ckeditor"  id="editor2" name="quote" class="form-control has-feedback-left" id="inputSuccess2" placeholder="Quote" cols="40" rows="10" ><?php if (!empty($_POST['quote'])) echo htmlspecialchars($_POST['quote']); ?></textarea>
+                                        </div>
+										
+										
+										 <div class="checkbox col-md-12 col-sm-12 col-xs-12 form-group" style="margin-top:-13px;margin-bottom:3px;">
+                                                    <label>
+                                                        <input name="a" type="checkbox" class="flat" value="yes" /> Post As Anonymous
+                                                    </label>
+                                                </div>
+												<!-- 
+                                        <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                            <input type="text" name="tags"  class="form-control has-feedback-left" id="inputSuccess5" placeholder="Tags (optional) seperate by commas"value="<?php if (!empty($_POST['tags'])) echo htmlspecialchars($_POST['tags']); ?>">
+                                            <span class="fa fa-check-square form-control-feedback left" aria-hidden="true"></span>
+                                        </div>
+                                        <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                            <input type="text" name="desc"  class="form-control has-feedback-left" id="inputSuccess4" for="email" placeholder="Description(optional)" value="<?php if (!empty($_POST['desc'])) echo htmlspecialchars($_POST['desc']); ?>">
+                                            <span class="fa fa-pencil-square-o form-control-feedback left" aria-hidden="true"></span>
+                                        </div> -->
+											  <p class="antispam">Leave this empty: <input type="text" name="urladd" /></p>
+                                        <div class="ln_solid"></div>
+                                        <div>
+                                            <div class="col-md-12">
+                                                <button type="submit" name="submit" class="col-md-12 col-sm-12 col-xs-12 form-group btn btn-success">Quote</button>
+                                            </div>
+                                        </div>
+                                    </form>

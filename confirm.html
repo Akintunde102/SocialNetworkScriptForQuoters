@@ -1,0 +1,96 @@
+<?php include('inc.php'); ?>
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        
+     <?php include('store/head.html'); ?>
+    </head>
+
+    <body>
+        
+        <!-- Top menu -->
+		
+		
+		<?php if ($deviceType != 'computer'){ include('store/header_mobile.html');}else{ include('store/header.html');}?>
+		
+	<?php 
+	
+		//if (empty($_GET['page']) && empty($_GET['names']) && empty($_GET['tags']))
+		//{
+		//include('store/slider.html');
+		//}
+		?>
+		
+        <!--  Quotes -->
+        <div class="services-container">
+	        	<div class="row">
+					<br/>
+		<?php  
+		if ($wp->confirmReg() == true){
+		      $email = trim($wp->decrypt(trim($_GET['c'])));
+		     $user_details = $user->get_user($email);
+		     $user->login($user_details['email'],$user_details['password']);
+			?>
+			<br/>
+			<br/>
+			<br/>
+			<div class="col-md-3"></div>
+			<div class="col-md-5">
+                            <div class="x_panel">
+                                <div class="x_title">
+                                    <h2>Registration Confirmed<small></small></h2>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="x_content">
+                                    <article class="media event"  style="font-size: 30px;">
+                                        Welcome, <?=$user_details['firstname'] ?>
+                                        <div class="media-body">
+                                            <p align="center"><u><a href="index.html">Enter Now</a></u></p>
+                                        </div>
+                                    </article>
+                                </div>
+                            </div>
+                        </div>
+<?php		
+			
+			
+		} else{
+		?>
+		
+		<div class="x_panel">
+                                <div class="x_title">
+                                    <h4>Confirmation Invalid<small></small></h4>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="x_content">
+                                    <article class="media event"  style="font-size: 22px;">Reasons for Invalidity<ul> <li>This account might have been confirmed already </li><li>The link might be incomplete or tampered with</li></ul>
+									<p> Try and Sign in below</p>
+                                        <div class="media-body">
+										<div class="col-md-3"></div><div class="col-md-6"><?php include('store/login.html') ?></div>
+                                            <p align="center"><u><a href="index.html">Go Back to Home</a></u></p>
+											 
+                                        </div>
+                                    </article>
+                                </div>
+                            </div>
+                        </div>
+		
+		<?php }?>
+	
+                    </div>		
+		</div>
+        </div>
+		
+		
+        <!-- Footer -->
+	
+	<?php include('store/footer.html') ?>
+	
+	<?php include('store/foot.html') ?>	
+
+       
+
+    </body>
+
+</html>

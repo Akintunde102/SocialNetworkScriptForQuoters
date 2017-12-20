@@ -1,0 +1,79 @@
+<?php include('inc.php'); ?>
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        
+     <?php include('store/head.html'); ?>
+    </head>
+
+    <body>
+        
+        <!-- Top menu -->
+		
+		
+		<?php if ($deviceType != 'computer'){ include('store/header_mobile.html');}else{ include('store/header.html');}?>
+		
+	<?php 
+	
+		//if (empty($_GET['page']) && empty($_GET['names']) && empty($_GET['tags']))
+		//{
+		//include('store/slider.html');
+		//}
+		?>
+		
+        <!--  Quotes -->
+        <div class="services-container">
+	        	<div class="row">
+		
+<input type="hidden" id="type" value="<?php echo 'index'; ?>" />
+<?php 
+
+
+ 
+		if (!empty($_GET['names']))
+		{
+		echo '<input type="hidden" id="subtype" value="names" />';
+		echo '<input type="hidden" id="subtype_value" value="'.$_GET['names'].'" />';
+		}
+		else if (!empty($_GET['tags']))
+		{
+		echo '<input type="hidden" id="subtype" value="tags" />';
+		echo '<input type="hidden" id="subtype_value" value="'.$_GET['tags'].'" />';
+		}
+		else if (!empty($_GET['m']))
+		{
+		echo '<input type="hidden" id="subtype" value="m" />';
+		echo '<input type="hidden" id="subtype_value" value="'.$_GET['m'].'" />';
+		}
+		else
+		{
+		echo '<input type="hidden" id="subtype" value="index" />';
+		echo '<input type="hidden" id="subtype_value" value="index" />';
+		}
+		
+		if (!empty($_GET['c'])){$wp->confirmReg(); exit;}
+		
+      	
+		$wp->display('index');
+		
+		unset($_SESSION['update_error']);
+		?>	
+		
+	
+                    </div>		
+		</div>
+        </div>
+		
+		
+        <!-- Footer -->
+	
+	<?php include('store/footer.html') ?>
+	
+	<?php include('store/foot.html') ?>	
+
+       
+
+    </body>
+
+</html>

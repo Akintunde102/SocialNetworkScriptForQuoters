@@ -1,0 +1,57 @@
+<?php include('inc.php') ?>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        
+     <?php include('store/head.html'); ?>
+    </head>
+
+    <body>
+        <!-- Top menu -->
+		
+		
+		<?php if ($deviceType != 'computer'){ include('store/header_mobile.html');}else{ include('store/header.html');}?>
+		
+	<!--  Quotes -->
+        <div class="services-container">
+	        	<div class="row">
+				<?php 
+			if (!empty($_GET['qid'])){
+				
+					if  ($deviceType == 'phone' )
+					{echo '<div class="col-lg-12">';}
+						else {echo '<div class="col-md-8"><div class="row">';}
+				?>		
+						<h3>Copy Quote from Box Below</h3>
+                                <textarea type="text"  class="form-control"><?php echo $QuoteData['WithAuthor'] ?></textarea>
+				<?php
+				if  ($deviceType == 'phone'){ echo '</div>';}
+				}
+				
+					print '</div>';
+					print '</div>';
+					
+					if  ($deviceType == 'phone' ){
+					print '<div class="col-md-5">ADS SECTION</div>';}
+					else {
+					print '<div class="col-md-2">ADS SECTION</div>';}
+					
+					print '</div>';
+							
+							?>
+					</div>
+		
+                    </div>		
+		</div>
+        </div>
+        <!-- Footer -->
+	
+	<?php include('store/footer.html') ?>
+	
+	<?php include('store/foot.html') ?>	
+
+       
+
+    </body>
+
+</html>

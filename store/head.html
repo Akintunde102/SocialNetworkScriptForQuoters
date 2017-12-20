@@ -1,0 +1,858 @@
+   <?php 
+   if (!empty($_GET['tags'])){$g_t = $wp->code($_GET['tags'],'down'); $g_t_Related = str_replace(' ',' quotes,',str_replace($g_t,'',$wp->getags($g_t))); $g_t_Related .= ' quotes';}
+   if (!empty($_GET['names'])){ $g_n = $wp->code($_GET['names'],'down');}
+   
+   if (!empty($_GET['qid'])){$arr_q = $wp->getquote();}
+
+   if (!empty($_GET['page'])){ $f_pg = 'Page '.$_GET['page'];} else { $f_pg = '';}
+		if (!empty($_GET['q'])){if (!empty($title)){$meta_title = $title;}}
+		else if (!empty($g_t)){$meta_title = 'Quotes about '.$g_t.' '.$f_pg;}
+else if (!empty($g_n)){$meta_title = 'Top Quotes of '.$g_n.' '.$f_pg;}
+else  if (!empty($_GET['qid'])){$meta_title= $arr_q['Name'].' Quote';}
+		else {$meta_title = " {$site['name']} The Quote Repository $f_pg";}
+		
+		if (!empty($_GET['q'])){if (!empty($title)){$meta_desc = $title;}}
+		else if (!empty($g_t)){$meta_desc = 'All Quotes about '.$g_t.' '.$f_pg;}
+		else if (!empty($g_n)){$meta_desc = 'Best and Top Quotes of '.$g_n.' '.$f_pg;}
+		else  if (!empty($_GET['qid'])){$meta_desc = $arr_q['Quote'].'....by '.$arr_q['Name'].' Quotes'.' '.$f_pg;}
+		else {$meta_desc = "A repository of inspirational,love,motivational and  wisdom quotes".' '.$f_pg;}
+		
+		if (!empty($_GET['q'])){if (!empty($title)){$meta_kw = 'famous quotes,popular quotes,inspirational quotes,love quotes,poems,rap quotes,wisodm quotes,life quotes,'.$title;}}
+		else if (!empty($g_t)){$meta_kw = 'famous quotes,popular quotes,inspirational quotes,love quotes,poems,rap quotes,wisdom quotes,life quotes,'.$g_t.$g_t_Related;}
+else if (!empty($g_n)){$meta_kw = 'famous quotes,popular quotes,inspirational quotes,love quotes,poems,rap quotes,wisdom quotes,life quotes,'.$g_n;}
+else  if (!empty($_GET['qid'])){$meta_kw= $wp->chop_words($arr_q['Quote'],4).','.$arr_q['Name'].','.$arr_q['Tags'].' quotes'.',famous quotes,popular quotes,inspirational quotes,love quotes,poems,rap quotes,wisodm quotes,life quotes';}
+		else {$meta_kw = "famous quotes,popular quotes,inspirational quotes,love quotes,poems,rap quotes,wisdom quotes,life quotes ";}	
+		?><meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="google-site-verification" content="wsMUSlWtA5ykNmptPFydeOgzZ2W6iK4eo_O15Ddgg6c" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="<?=$meta_desc?>">
+        <meta name="keywords" content="<?=$meta_kw?>">
+        <title><?=$meta_title?></title>
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="http://<?=$site_address?>/assets/bootstrap/css/bootstrap.css">
+        <link rel="stylesheet" href="http://<?=$site_address?>/assets/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="http://<?=$site_address?>/assets/css/animate.css">
+        <link rel="stylesheet" href="http://<?=$site_address?>/assets/css/custom.css">
+        <link rel="stylesheet" href="http://<?=$site_address?>/assets/css/magnific-popup.css">
+        <link rel="stylesheet" href="http://<?=$site_address?>/assets/datatables/dataTables.bootstrap.css">
+        <link rel="stylesheet" href="http://<?=$site_address?>/assets/icheck/flat/green.css">
+        <link rel="stylesheet" href="http://<?=$site_address?>/assets/css/<?php  if ($deviceType != 'computer'){echo 'mobile-style.css'; } else {echo 'style.css';}?>">
+			<!--- MOBILE HANDLING CSS --->
+				<?php
+			if  ($deviceType == 'phone' ){echo "<link rel=\"stylesheet\" href=\"http://$site_address/assets/css/mobile-style.css\">";}	
+					?>
+        <link rel="stylesheet" href="http://<?=$site_address?>/assets/css/media-queries.css">
+		
+        <link rel="stylesheet" href="http://<?=$site_address?>/assets/css/slicknav.css">
+		
+		        <link rel="stylesheet" href="http://<?=$site_address?>/assets/css/autocomplete.css">
+<link href="http://<?=$site_address?>/assets/ico/favicon.ico" rel="shortcut icon" />
+   
+		<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-37211989-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+        <script src="http://<?=$site_address?>/assets/js/jquery-1.11.1.min.js"></script>
+    <!--[if lt IE 9]>
+ <script src="http://<?=$site_address?>/assets/js/html5shiv.js" type="text/javascript"></script>
+ <script src="http://<?=$site_address?>/assets/js/respond.min.js" type="text/javascript"></script>
+<![endif]-->
+		<!--[if lt IE 8]>
+ <script src="http://<?=$site_address?>/assets/js/html5shiv.js" type="text/javascript"></script>
+ <script src="http://<?=$site_address?>/assets/js/respond.min.js" type="text/javascript"></script>
+<![endif]-->
+		  <script type="text/javascript" src="http://<?=$site_address?>/assets/js/responsive-nav.js"></script>
+<script type="text/javascript" src="http://<?=$site_address?>/assets/js/jquery.form.min.js"></script>
+<script type="text/javascript" src="http://<?=$site_address?>/assets/js/jquery.form.min.js"></script>
+<link rel="stylesheet" href="http://<?=$site_address?>/assets/css/flexslider.css" type="text/css" media="screen" />
+				<script type="text/javascript">
+			$(window).load(function() {
+				$("#flexiselDemo").flexisel({
+					visibleItems: 5,
+					animationSpeed: 1000,
+					autoPlay: false,
+					autoPlaySpeed: 3000,    		
+					pauseOnHover: true,
+					enableResponsiveBreakpoints: true,
+			    	responsiveBreakpoints: { 
+			    		portrait: { 
+			    			changePoint:480,
+			    			visibleItems: 1
+			    		}, 
+			    		landscape: { 
+			    			changePoint:640,
+			    			visibleItems: 2
+			    		},
+			    		tablet: { 
+			    			changePoint:768,
+			    			visibleItems: 3
+			    		}
+			    	}
+			    });
+			    
+			});
+		</script>
+		<script type="text/javascript" src="http://<?=$site_address?>/assets/js/jquery.flexisel.js"></script>
+		
+		
+		<!--- For Masonry Grids --->
+		
+		<script type="text/javascript" src="http://<?=$site_address?>/assets/js/masonry.pkgd.js"></script>		
+		
+		<script type="text/javascript">
+
+			$('.grid').masonry({
+				// set itemSelector so .grid-sizer is not used in layout
+				itemSelector: '.grid-item',
+				// use element for option
+				columnWidth: '.grid-sizer',
+				percentPosition: true
+			})
+</script>
+<script type="text/javascript" src="http://<?=$site_address?>/assets/js/like.js"></script>
+<script type="text/javascript" src="http://<?=$site_address?>/assets/js/save.js"></script>
+<script type="text/javascript" >
+// magic.js
+$(document).ready(function() {
+
+	// process the form
+	$('form.addquote').submit(function(event) {
+
+		$('#quote-group').removeClass('has-error'); // remove the error class
+		
+		// get the form data
+		// there are many ways to get this data using jQuery (you can use the class or id also)
+		if ($('textarea[name=quote]') != undefined){
+		var formData = {
+			'quote' : $('textarea[name=quote]').val(),
+			'a' : $('input[name=a]:checked').val(),
+			'urladd' : $('input[name=urladd]').val()
+		};
+		}
+
+		// process the form
+		$.ajax({
+			type 		: 'POST', // define the type of HTTP verb we want to use (POST for our form)
+			url 		: "<?php echo 'http://'.$site_address.'/addquote.php';?>", // the url where we want to POST
+			data 		: formData, // our data object
+			dataType 	: 'json', // what type of data do we expect back from the server
+			encode 		: true
+		})
+			// using the done promise callback
+			.done(function(data) {
+
+				// log data to the console so we can see
+				console.log(data);
+
+				// here we will handle errors and validation messages
+				if ( ! data.success) {
+					// handle errors for quote ---------------
+					if (data.errors.quote) {
+					    $('p.alert-success').remove(); // remove the error text
+					    $('p.error').remove(); // remove the error text
+						$('#quote-group').addClass('has-error'); // add the error class to show red input
+						$('#fresult').append('<p class="error"><i class="fa fa-asterisk">' + data.errors.quote + '</i></p>'); // add the actual error message under our input
+					}
+				} else {
+					// ALL GOOD! just show the success message!
+					$('p.error').remove(); // remove the error text
+					$('#fresult').append('<p id="fadeout1" class="alert alert-success"><i class="fa fa-asterisk">' + data.message + '</i></p>');
+					$("#fadeout1").delay(5000).fadeOut();
+					$('textarea[name=quote]').val('');
+					
+				}
+			})
+
+			// using the fail promise callback
+			.fail(function(data) {
+
+				// show any errors
+				// best to remove for production
+				console.log(data);
+				
+					$('#result').append('<div class="alert alert-success">No Shit</div>');
+				
+			});
+
+		// stop the form from submitting the normal way and refreshing the page
+		event.preventDefault();
+	});
+
+});
+</script>
+
+<!-- <script type="text/javascript" >
+<?php if (empty($_COOKIE["timeDiff"])){ ?>
+now = new Date();
+localtime = Math.round(now.getTime()/1000); // same as above
+document.cookie="localtime="+localtime;
+<?php 
+//$clientime = trim($_COOKIE["localtime"]);
+//$this->user->unsetcookie('localtime');
+//$ServerTime = strtotime(date("Y-m-d H:i:s"));
+//$timeDiff =  $clientime - $ServerTime;	
+//$wp->user->setcookie('timeDiff',$timeDiff,1);
+}?>
+</script> -->
+<script type="text/javascript" >
+// magic.js
+$(document).ready(function() {
+
+	// process the form
+	$('form#regForm').submit(function(event) {
+		$('#fn-group').removeClass('has-error'); // remove the error class
+		$('#em-group').removeClass('has-error'); // remove the error class
+		$('#pw-group').removeClass('has-error'); // remove the error class
+		
+		// get the form data
+		// there are many w`ays to get this data using jQuery (you can use the class or id also)
+		if ($('input[name=pw]') != undefined){
+		var formData = {
+			'fn' : $('input[name=fn]').val(),
+			'em' : $('input[name=em]').val(),
+			'url' : $('input[name=url]').val(),
+			'pw' : $('input[name=pw]').val()
+		};
+		}
+
+		// process the form
+		$.ajax({
+			type 		: 'POST', // define the type of HTTP verb we want to use (POST for our form)
+			url 		: "<?php echo 'http://'.$site_address.'/reg.php';?>", // the url where we want to POST
+			data 		: formData, // our data object
+			dataType 	: 'json', // what type of data do we expect back from the server
+			encode 		: true
+		})
+			// using the done promise callback
+			.done(function(data) {
+
+				// log data to the console so we can see
+				console.log(data);
+
+				// here we will handle errors and validation messages
+				if ( ! data.success) {
+					// handle errors for quote ---------------
+				
+					
+					if (data.errors.pw) {
+					    $('p.alert-success').remove(); // remove the error text
+					    $('p.error').remove(); // remove the error text
+						$('#pw-group').addClass('has-error'); // add the error class to show red input
+						$('#rresult').append('<p class="error"><i class="fa fa-asterisk">' + data.errors.pw + '</i></p>'); // add the actual error message under our input
+					}
+					
+					
+					if (data.errors.em) {
+					    $('p.alert-success').remove(); // remove the error text
+					    $('p.error').remove(); // remove the error text
+						$('#em-group').addClass('has-error'); // add the error class to show red input
+						$('#rresult').append('<p class="error"><i class="fa fa-asterisk">' + data.errors.em + '</i></p>'); // add the actual error message under our input
+					}
+					
+						if (data.errors.fn) {
+					    $('p.alert-success').remove(); // remove the error text
+					    $('p.error').remove(); // remove the error text
+						$('#fn-group').addClass('has-error'); // add the error class to show red input
+						$('#rresult').append('<p class="error"><i class="fa fa-asterisk">' + data.errors.fn + '</i></p>'); // add the actual error message under our input
+					}
+					
+				} else {
+					// ALL GOOD! just show the success message!
+
+                    $('p.error').remove(); // remove the error text
+					$('#rresult').append('<p id="rfadeout" class="alert alert-success fade in"><i class="fa fa-asterisk">' + data.message + '</i></p>');
+					$("#rfadeout").delay(5000).fadeOut();
+					$('input[name=fn]').val('');
+					$('input[name=em]').val('');
+					$('input[name=pw]').val('');
+					
+				}
+			})
+
+			// using the fail promise callback
+			.fail(function(data) {
+
+				// show any errors
+				// best to remove for production
+				console.log(data);
+				
+					$('#rresult').append('<div class="alert alert-success">No Shit</div>');
+				
+			});
+
+		// stop the form from submitting the normal way and refreshing the page
+		event.preventDefault();
+	});
+});
+</script>
+
+<script>
+           // magic.js
+$(document).ready(function() {
+
+	// process the form
+	$('form.addcomment').submit(function(event) {
+
+		$('#quote-group').removeClass('has-error'); // remove the error class
+		
+		// get the form data
+		// there are many ways to get this data using jQuery (you can use the class or id also)
+		if ($('textarea[name=comment]') != undefined){
+		var formData = {
+			'comment' : $('textarea[name=comment]').val(),
+			'urladdc' : $('input[name=urladdc]').val()
+		};
+		}
+		
+		// process the form
+		$.ajax({
+			type 		: 'POST', // define the type of HTTP verb we want to use (POST for our form)
+			url 		: "<?php echo 'http://'.$site_address.'/addcomment.php?qid='.@$_GET['qid'].'';?>", // the url where we want to POST
+			data 		: formData, // our data object
+			dataType 	: 'json', // what type of data do we expect back from the server
+			encode 		: true
+		})
+			// using the done promise callback
+			.done(function(data) {
+
+				// log data to the console so we can see
+				console.log(data);
+
+				// here we will handle errors and validation messages
+				if ( ! data.success) {
+					// handle errors for quote ---------------
+					if (data.errors.comment) {
+					    $('p.alert-success').remove(); // remove the error text
+					    $('p.error').remove(); // remove the error text
+						$('#quote-group').addClass('has-error'); // add the error class to show red input
+						$('#cresult').append('<p class="error"><i class="fa fa-asterisk">' + data.errors.comment + '</i></p>'); // add the actual error message under our input
+					}
+				} else {
+					// ALL GOOD! just show the success message!
+
+				     $('.commentload').load('commentload.php .commentload > *'); 
+               	$('p.error').remove(); // remove the error text
+					$('p.alert').remove(); // remove the error text
+					$('#cresult').append('<p id="fadeout" class="alert alert-success fade in"><i class="fa fa-asterisk">' + data.message + '</i></p>');
+					$("#fadeout").delay(5000).fadeOut();
+					$('textarea[name=comment]').val('');
+					
+				}
+			})
+
+			// using the fail promise callback
+			.fail(function(data) {
+
+				// show any errors
+				// best to remove for production
+				console.log(data);
+				
+					$('#result').append('<div class="alert alert-success">No Shit</div>');
+				
+			});
+
+		// stop the form from submitting the normal way and refreshing the page
+		event.preventDefault();
+	});
+});
+    </script>
+<script type="text/javascript">
+$(document).ready(function() { 
+
+	var progressbox     = $('#progressbox');
+	var progressbar     = $('#progressbar');
+	var statustxt       = $('#statustxt');
+	var completed       = '0%';
+	
+	var options = { 
+			target:   '#output',   // target element(s) to be updated with server response 
+			beforeSubmit:  beforeSubmit,  // pre-submit callback 
+			uploadProgress: OnProgress,
+			success:       afterSuccess,  // post-submit callback 
+			resetForm: true        // reset the form after successful submit 
+		}; 
+		
+	 $('#MyUploadForm').submit(function() { 
+			$(this).ajaxSubmit(options);  			
+			// return false to prevent standard browser submit and page navigation 
+			return false; 
+		});
+	
+//when upload progresses	
+function OnProgress(event, position, total, percentComplete)
+{
+	//Progress bar
+	progressbar.width(percentComplete + '%') //update progressbar percent complete
+	statustxt.html(percentComplete + '%'); //update status text
+	if(percentComplete>50)
+		{
+			statustxt.css('color','#fff'); //change status text to white after 50%
+		}
+}
+
+//after succesful upload
+function afterSuccess()
+{
+	$('#submit-btn').show(); //hide submit button
+	$('#loading-img').hide(); //hide submit button
+
+}
+
+//function to check file size before uploading.
+function beforeSubmit(){
+    //check whether browser fully supports all File API
+   if (window.File && window.FileReader && window.FileList && window.Blob)
+	{
+
+		if( !$('#imageInput').val()) //check empty input filed
+		{
+			$("#output").html("Are you kidding me?");
+			return false
+		}
+		
+		var fsize = $('#imageInput')[0].files[0].size; //get file size
+		var ftype = $('#imageInput')[0].files[0].type; // get file type
+		
+		//allow only valid image file types 
+		switch(ftype)
+        {
+            case 'image/png': case 'image/gif': case 'image/jpeg': case 'image/pjpeg':
+                break;
+            default:
+                $("#output").html("<b>"+ftype+"</b> Unsupported file type!");
+				return false
+        }
+		
+		//Allowed file size is less than 1 MB (1048576)
+		if(fsize>17048576) 
+		{
+			$("#output").html("<b>"+bytesToSize(fsize) +"</b> Too big Image file! <br />Please reduce the size of your photo using an image editor.");
+			return false
+		}
+		
+		//Progress bar
+		progressbox.show(); //show progressbar
+		progressbar.width(completed); //initial value 0% of progressbar
+		statustxt.html(completed); //set status text
+		statustxt.css('color','#000'); //initial color of status text
+
+				
+		$('#submit-btn').hide(); //hide submit button
+		$('#loading-img').show(); //hide submit button
+		$("#output").html("");  
+	}
+	else
+	{
+		//Output error to older unsupported browsers that doesn't support HTML5 File API
+		$("#output").html("Please upgrade your browser, because your current browser lacks some new features we need!");
+		return false;
+	}
+}
+
+//function to format bites bit.ly/19yoIPO
+function bytesToSize(bytes) {
+   var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+   if (bytes == 0) return '0 Bytes';
+   var i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
+   return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i];
+}
+
+}); 
+
+</script>	
+
+
+<script type="text/javascript">
+$(document).ready(function() { 
+
+	var progressboxi     = $('#progressboxi');
+	var progressbari     = $('#progressbari');
+	var statustxti       = $('#statustxti');
+	var completedi       = '0%';
+	
+	var options = { 
+			target:   '#outputi',   // target element(s) to be updated with server response 
+			beforeSubmit:  beforeSubmit,  // pre-submit callback 
+			uploadProgress: OnProgress,
+			success:       afterSuccess,  // post-submit callback 
+			resetForm: true        // reset the form after successful submit 
+		}; 
+		
+	 $('#MyUploadFormi').submit(function() { 
+			$(this).ajaxSubmit(options);  			
+			// return false to prevent standard browser submit and page navigation 
+			return false; 
+		});
+	
+//when upload progresses	
+function OnProgress(event, position, total, percentComplete)
+{
+	//Progress bar
+	progressbari.width(percentComplete + '%') //update progressbar percent complete
+	statustxti.html(percentComplete + '%'); //update status text
+	if(percentComplete>50)
+		{
+			statustxti.css('color','#fff'); //change status text to white after 50%
+		}
+}
+
+//after succesful upload
+function afterSuccess()
+{
+	$('#submit-btni').show(); //hide submit button
+	$('#loading-imgi').hide(); //hide submit button
+
+}
+
+//function to check file size before uploading.
+function beforeSubmit(){
+    //check whether browser fully supports all File API
+   if (window.File && window.FileReader && window.FileList && window.Blob)
+	{
+
+		if( !$('#imageInputi').val()) //check empty input filed
+		{
+			$("#outputi").html("<p class=\"alert error\" style=\"font-size: 24px;\">Please Add An Image</p>");
+			return false
+		}
+		
+		
+		if( !$('#desci').val()) //check empty input filed
+		{
+			$("#outputi").html("<p class=\"alert error\" style=\"font-size: 24px;\">Please Add A Description</p>");
+			return false
+		}
+		
+		var fsize = $('#imageInputi')[0].files[0].size; //get file size
+		var ftype = $('#imageInputi')[0].files[0].type; // get file type
+		
+		//allow only valid image file types 
+		switch(ftype)
+        {
+            case 'image/png': case 'image/gif': case 'image/jpeg': case 'image/pjpeg':
+                break;
+            default:
+                $("#outputi").html("<b>"+ftype+"</b> Unsupported file type!");
+				return false
+        }
+		
+	if (ftype == 'image/gif'){
+		//Allowed file size is less than 1 MB (1048576)
+		if(fsize>304857) 
+		{
+			$("#outputi").html("<p class=\"alert error\" style=\"font-size: 20px;\">[<b>"+bytesToSize(fsize) +"</b>] Animation file is too big <br />Please reduce the size of your photo.</p>");
+			return false
+		}
+	}
+	
+		
+		//Progress bar
+		progressboxi.show(); //show progressbar
+		progressbari.width(completedi); //initial value 0% of progressbar
+		statustxti.html(completedi); //set status text
+		statustxti.css('color','#000'); //initial color of status text
+
+				
+		$('#submit-btni').hide(); //hide submit button
+		$('#loading-imgi').show(); //hide submit button
+		$("#outputi").html("");  
+	}
+	else
+	{
+		//Output error to older unsupported browsers that doesn't support HTML5 File API
+		$("#outputi").html("Please upgrade your browser, because your current browser lacks some new features we need!");
+		return false;
+	}
+}
+
+//function to format bites bit.ly/19yoIPO
+function bytesToSize(bytes) {
+   var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+   if (bytes == 0) return '0 Bytes';
+   var i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
+   return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i];
+}
+
+}); 
+
+</script>		
+
+<script type="text/javascript">
+$(document).ready(function() { 
+
+	var progressboxa    = $('#progressboxa');
+	var progressbara     = $('#progressbara');
+	var statustxta      = $('#statustxta');
+	var completeda       = '0%';
+	
+	var options = { 
+			target:   '#outputa',   // target element(s) to be updated with server response 
+			beforeSubmit:  beforeSubmit,  // pre-submit callback 
+			uploadProgress: OnProgress,
+			success:       afterSuccess,  // post-submit callback 
+			resetForm: true        // reset the form after successful submit 
+		}; 
+		
+	 $('#MyUploadForma').submit(function() { 
+			$(this).ajaxSubmit(options);  			
+			// return false to prevent standard browser submit and page navigation 
+			return false; 
+		});
+	
+//when upload progresses	
+function OnProgress(event, position, total, percentComplete)
+{
+	//Progress bar
+	progressbara.width(percentComplete + '%') //update progressbar percent complete
+	statustxta.html(percentComplete + '%'); //update status text
+	if(percentComplete>50)
+		{
+			statustxta.css('color','#fff'); //change status text to white after 50%
+		}
+}
+
+//after succesful upload
+function afterSuccess()
+{
+	$('#submit-btna').show(); //hide submit button
+	$('#loading-imga').hide(); //hide submit button
+
+}
+
+//function to check file size before uploading.
+function beforeSubmit(){
+    //check whether browser fully supports all File API
+   if (window.File && window.FileReader && window.FileList && window.Blob)
+	{
+		if( !$('#imageInputa').val()) //check empty input filed
+		{
+			$("#outputa").html("<p class=\"alert error\" style=\"font-size: 24px;\">Please Add An Image</p>");
+			return false
+		}
+		
+		if( !$('#QInputa').val()) //check empty input filed
+		{
+			$("#outputa").html("<p class=\"alert error\" style=\"font-size: 24px;\">An error occured,please try again</p>");
+			return false
+		}
+		
+		if( !$('#NInputa').val()) //check empty input filed
+		{
+			$("#outputa").html("<p class=\"alert error\" style=\"font-size: 24px;\">An error occured,please try again</p>");
+			return false
+		}
+		
+		if( !$('#IInputa').val()) //check empty input filed
+		{
+			$("#outputa").html("<p class=\"alert error\" style=\"font-size: 24px;\">An Error Occured,please try again</p>");
+			return false
+		}
+		if( !$('#CInputa').val()) //check empty input filed
+		{
+			$("#outputa").html("<p class=\"alert error\" style=\"font-size: 24px;\">An Error Occured,please try again</p>");
+			return false
+		}
+		if( $('#DInputa').val()) //check empty input filed
+		{
+			$("#outputa").html("<p class=\"alert error\" style=\"font-size: 24px;\">A error occured,please try again</p>");
+			return false
+		}
+		
+		
+		
+		var fsize = $('#imageInputa')[0].files[0].size; //get file size
+		var ftype = $('#imageInputa')[0].files[0].type; // get file type
+		
+		//allow only valid image file types 
+		switch(ftype)
+        {
+            case 'image/png': case 'image/gif': case 'image/jpeg': case 'image/pjpeg':
+                break;
+            default:
+                $("#outputa").html("<b>"+ftype+"</b> Unsupported file type!");
+				return false
+        }
+		
+		//Allowed file size is less than 1 MB (1048576)
+		if(fsize>17048576) 
+		{
+			$("#outputa").html("<b>"+bytesToSize(fsize) +"</b> Too big Image file! <br />Please reduce the size of your photo using an image editor.");
+			return false
+		}
+		
+		//Progress bar
+		progressboxa.show(); //show progressbar
+		progressbara.width(completeda); //initial value 0% of progressbar
+		statustxta.html(completeda); //set status text
+		statustxta.css('color','#000'); //initial color of status text
+
+				
+		$('#submit-btna').hide(); //hide submit button
+		$('#loading-imga').show(); //hide submit button
+		$("#outputa").html("");  
+	}
+	else
+	{
+		//Output error to older unsupported browsers that doesn't support HTML5 File API
+		$("#outputa").html("Please upgrade your browser, because your current browser lacks some new features we need!");
+		return false;
+	}
+}
+
+//function to format bites bit.ly/19yoIPO
+function bytesToSize(bytes) {
+   var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+   if (bytes == 0) return '0 Bytes';
+   var i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
+   return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + sizes[i];
+}
+
+}); 
+
+</script>		
+
+	
+<script type="text/javascript" >
+// magic.js
+$(document).ready(function() {
+
+	// process the form
+	$('form.addbio').submit(function(event) {
+
+		$('#bio-group').removeClass('has-error'); // remove the error class
+		
+		// get the form data
+		// there are many ways to get this data using jQuery (you can use the class or id also)
+		if ($('textarea[name=bio]') != undefined){
+		var formData = {
+			'bio' : $('textarea[name=bio]').val(),
+			'urlbio' : $('input[name=urlbio]').val()
+		};
+		}
+
+		// process the form
+		$.ajax({
+			type 		: 'POST', // define the type of HTTP verb we want to use (POST for our form)
+			url 		: "<?php echo 'http://'.$site_address.'/addbio.php';?>", // the url where we want to POST
+			data 		: formData, // our data object
+			dataType 	: 'json', // what type of data do we expect back from the server
+			encode 		: true
+		})
+			// using the done promise callback
+			.done(function(data) {
+
+				// log data to the console so we can see
+				console.log(data);
+
+				// here we will handle errors and validation messages
+				if ( ! data.success) {
+					// handle errors for quote ---------------
+					if (data.errors.bio) {
+					    $('p.alert-success').remove(); // remove the error text
+					    $('p.error').remove(); // remove the error text
+						$('#bio-group').addClass('has-error'); // add the error class to show red input
+						$('#fbio').append('<p class="error"><i class="fa fa-asterisk">' + data.errors.bio + '</i></p>'); // add the actual error message under our input
+					}
+				} else {
+					// ALL GOOD! just show the success message!
+					$('p.error').remove(); // remove the error text
+					$('#fbio').append('<p id="fadeout4" class="alert alert-success"><i class="fa fa-asterisk">' + data.message + '</i></p>');
+					$("#fadeout4").delay(5000).fadeOut();
+					$('textarea[name=bio]').val('');
+					
+				}
+			})
+
+			// using the fail promise callback
+			.fail(function(data) {
+
+				// show any errors
+				// best to remove for production
+				console.log(data);
+				
+					$('#result').append('<div class="alert alert-success">No Shit</div>');
+				
+			});
+
+		// stop the form from submitting the normal way and refreshing the page
+		event.preventDefault();
+	});
+
+});
+</script>
+    <script type="text/javascript">
+        $(document).ready(function(e) {
+    $('.clickp').click(function (e) {
+	$('#collapseOne').remove(); // add the error class to show red input   
+    });
+});
+    </script>
+<script type="text/javascript" >
+flag = true;
+$(window).scroll(function() {
+	if($(window).scrollTop() + $(window).height() > $(document).height()/3){
+		first = $('#first').val();
+		limit = $('#limit').val();
+		type = $('#type').val();
+		subtype = $('#subtype').val();
+		subtype_value = $('#subtype_value').val();
+		no_data = true;
+		if(flag && no_data){
+			flag = false;
+			$('#loader').show();
+			$.ajax({
+				url : "<?php echo 'http://'.$site_address.'/ajax_infinite.php';?>",
+				method: 'post',
+				data: {
+				   start : first,
+				   limit : limit,
+				   type : type,
+				   subtype : subtype,
+				   subtype_value : subtype_value
+				},
+				success: function( data ) {
+					flag = true;
+					$('#loader').hide();
+					if(data !=''){
+						
+						first = parseInt($('#first').val());
+						limit = parseInt($('#limit').val());
+						type = $('#type').val();
+						subtype = $('#subtype').val();
+						subtype_value = $('#subtype_value').val();
+						$('#first').val( first+limit );	
+					$('#timeline-container').append( data );
+					}else{
+					
+				$('div.nomore').remove(); // remove the error text
+				$('#timeline-container').append( "<div class='nomore shadow btn btn-block btn-lg' >End of Quotes</div>" );
+			
+						//alert('No more data to show');
+						no_data = false;
+					}
+				},
+				error: function( data ){
+					flag = true;
+					$('#loader').hide();
+					no_data = false;
+					//alert('Something went wrong, Please contact admin');
+				}
+			});
+		}	
+	}
+});	
+
+</script>
+
+
+
+
+

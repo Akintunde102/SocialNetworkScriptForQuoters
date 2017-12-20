@@ -1,0 +1,76 @@
+<?php include('head.html'); ?>
+
+<div class="about-breadcrumb">
+	<div class="container">
+		<ul>
+			<li><a href="index.html">Cyzek Global</a><i>></i></li>
+			<li>Contact Us</li>
+		</ul>
+	</div>
+</div>
+
+<div class="w3ls_address_mail_footer_grids Contactbottom">
+	
+	<div class="container">
+			<div class="col-md-3 contact-form">
+				<h4 class="white-w3ls">Contact <span>Form</span></h4>
+				<form action="mail.php" method="post">
+					<div class="styled-input agile-styled-input-top">
+						<input type="text" name="name" required="">
+						<label>Name</label>
+						<span></span>
+					</div>
+					<div class="styled-input">
+						<input type="email" name="email" required=""> 
+						<label>Email</label>
+						<span></span>
+					</div> 
+					<div class="styled-input">
+						<textarea name="message" required=""></textarea>
+						<label>Message</label>
+						<span></span>
+					</div>	 
+					<input type="submit" value="send">
+				</form>
+			</div>
+			<div class="col-md-4 contactright">
+				<h3>Contact Address</h3>
+				<div class="w3ls_footer_grid_left">
+					<div class="wthree_footer_grid_left">
+						<i class="fa fa-phone" aria-hidden="true"></i>
+					</div>
+					<p>+97167660908</p>
+						<p>+971528872038</p>
+				</div>
+				<div class="w3ls_footer_grid_left">
+					<div class="wthree_footer_grid_left">
+						<i class="fa fa-envelope-o" aria-hidden="true"></i>
+					</div>
+					<p><a href="mailto:mail@cyzekglobal.com" style="color: white;">mail@cyzekglobal.com</a> </p>
+				</div>
+				<p>&nbsp;</p>
+				
+				<p>&nbsp;</p>
+			</div>
+			<div class="col-md-4 contactright">
+				<h3>Nigerian Contact</h3>
+				<div class="w3ls_footer_grid_left">
+					<div class="wthree_footer_grid_left">
+						<i class="fa fa-phone" aria-hidden="true"></i>
+					</div>
+					<p>+2348057284705</p>
+				</div>
+				<div class="w3ls_footer_grid_left">
+					<div class="wthree_footer_grid_left">
+						<i class="fa fa-envelope-o" aria-hidden="true"></i>
+					</div>
+					<p><a href="mailto:mail@cyzekglobal.com" style="color: white;">cyzekglobalgt@gmail.com</a> </p>
+				</div>
+				<p>&nbsp;</p>
+				<p>&nbsp;</p>
+			</div>
+			<div class="clearfix"> </div>
+	</div>
+</div>
+
+<?php include('foot.html'); ?>

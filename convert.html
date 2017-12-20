@@ -1,0 +1,119 @@
+<?php include('inc.php');$_SESSION['refer_back'] = $_SERVER['PHP_SELF'].'?qid='.$_GET['qid']; //$user->restrict(); ?>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        
+     <?php include('store/head.html'); ?>
+    </head>
+
+    <body>    
+        <!-- Top menu -->
+		
+		
+		<?php if ($deviceType != 'computer'){ include('store/header_mobile.html');}else{ include('store/header.html');}?>
+		
+	<!--  Quotes -->
+        <div class="services-container" <?php if ($deviceType == 'computer'){echo 'style="height: 550px;"';} ?>>
+	        	<div class="row">
+					<?php 
+					if ($deviceType == 'computer'){$wp->lists(); $wp->adlist();	
+					echo '<div class="col-md-2">kjjkjk</div>';}
+					?>
+				<?php 
+			if (!empty($_GET['qid']) && empty($_GET['bgi']))
+			{echo '<div class="col-md-5"><div class="row">';
+						$wpq = $wp->getquote();
+						echo "<div class=\"breadcrumb\">Pick A Background Image Below for the chosen quote</div>";
+				echo "<div class=\"breadcrumb quote-preview shadow\">Quote:<br/>".$wpq['Quote']."<br/><br/>
+				......".$wpq['Name']."</div>";
+		?>		
+					<div id="upload-wrappera">
+<div id="outputa"></div>
+<div id="progressboxa" style="display:none;"><div id="progressbara"></div><div id="statustxta">0%</div></div>
+<form action="http://<?=$site_address?>/processbg.php" onSubmit="return false" method="post" enctype="multipart/form-data" id="MyUploadForma">
+<input name="Q" id="QInputa" value="<?=$wpq['Quote']?>" type="hidden"/>
+<input name="N" id="NInputa" value="<?=$wpq['Name']?>" type="hidden" />
+<input name="I" id="IInputa" value="<?=$_GET['qid']?>" type="hidden"/>
+<input name="C" id="CInputa" value="<?php if (!empty($_GET['c'])){echo $_GET['c'];}else{echo 'none';}?>" type="hidden"/>
+<input name="D" id="DInputa" type="hidden" />
+<input name="image_file" id="imageInputa" type="file" />
+<input type="submit"  id="submit-btna" value="Add Background Image" />
+<img src="images/ajax-loader.gif" id="loading-imga" style="display:none;" alt="Please Wait"/>
+</form>
+</div>
+<?php
+				if ($deviceType == 'phone'){$page_limit = 5;}
+				else {$page_limit = 6;}
+				
+				if (empty($_GET['page'])){$page_number = 1; $page_offset = 1 * $page_limit; }
+					else {$page_number = $_GET['page']; $page_offset = $_GET['page'] * $page_limit;}
+				
+			 $results = $pagination->connection("SELECT * FROM `bg` LIMIT $page_limit OFFSET $page_offset");
+			  $s1 = $pagination->connection("SELECT count(*) as a FROM `bg`"); 
+			  $pictureCount = $s1[0]['a'];
+			 $x = 0;
+				foreach( $results as $tf ) {
+                          $files = $tf['bg'];				
+							  $fx = strtok($files,'.');
+								if  ($deviceType == 'phone')
+								{echo '	<div class="col-md-5">'; 	echo'<div class="panel panel-default shadow">';}
+								else {echo '<div class="col-lg-4 col-xs-8 conv" style="padding: 5px 1px 5px 0px">';}
+								if (!empty($_GET['c'])){echo '<a href="convert.html?qid='.$_GET['qid'].'&bgi='.$fx.'&c=b">';}
+								else {echo '<a href="convert.html?qid='.$_GET['qid'].'&bgi='.$fx.'">';}
+								if ($deviceType == 'phone'){
+								echo '<img title="Click And Wait " data-toggle="tooltip" style="width:200;height:100;" src="'.$folder['QuoteBg'].'/'.$files.'" />';}
+								else {
+								echo '<img title="Click And Wait " data-toggle="tooltip" width="150" height="150" src="'.$folder['QuoteBg'].'/'.$files.'" />';}
+								
+								echo '</div>';
+										if  ($deviceType == 'phone'){ echo '</div>';}
+					$x++;	
+				}
+				echo '</div>';
+				
+										echo '<ul class="pagination">';
+
+if ($page_number > 1){
+echo '<li><a href="http://';
+echo $site_address.'/convert.html?qid='.$_GET['qid'];
+echo '&page=';
+echo $page_number - 1;
+if (!empty($_GET['c'])){echo '&c=b';}		
+echo '">Previous</a></li>';
+}
+
+if ($pictureCount >= ($page_number * $page_limit) && $x == $page_limit){
+echo '<li><a href="http://';
+echo $site_address.'/convert.html?qid='.$_GET['qid'];
+echo '&page=';
+echo $page_number + 1;
+if (!empty($_GET['c'])){echo '&c=b';}
+echo '">Next</a></li>';
+}
+echo '</ul>';	
+				}
+				
+				else if (!empty($_GET['qid']) && !empty($_GET['bgi'])){
+			
+			if  ($deviceType == 'phone' )
+					{echo '<div>';}
+					else {echo '<div class="col-md-5" style="margin: 7% 0 0 0;">';}
+	$wp->TexttoImage();
+				if  ($deviceType == 'phone'){ echo '</div>';}
+				else {echo '</div>';}
+				}
+					print '</div>';
+					print '</div>';
+							
+							?>
+					</div>
+					</div>
+		</div>
+        </div>
+        <!-- Footer -->
+	
+	<?php include('store/footer.html') ?>
+	
+	<?php include('store/foot.html') ?>
+    </body>
+</html>

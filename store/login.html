@@ -1,0 +1,38 @@
+<?php
+if (!empty($_SERVER['HTTP_REFERER']) && empty($_SESSION['refer_back'])){
+    if ($_SERVER['HTTP_REFERER'] != 'http://'.$site_address.'/login.html' && $_SERVER['HTTP_REFERER'] != 'http://'.$site_address.'/?log=out' ){$_SESSION['refer_back'] = $_SERVER['HTTP_REFERER'];}
+	 }
+	 if ($user->is_logged_in() == true){ header("Location: $site_address");}
+	 
+	$login = $wp->login();?>
+<form class="form-horizontal form-label-left input_mask reg" role="form" method="post" action="http://<?=$site_address?>/login.html">
+                                       <legend> Sign In </legend>
+									   <?php
+	//check for any errors
+	if(isset($login['err'])){
+		foreach($login['err'] as $login['err']){
+			echo '<p class="error"><i class="fa fa-asterisk"></i>&nbsp;'.$login['err'].'</p>';
+	
+		}
+	}
+	
+		if (!empty($login['result'])){echo $login['result'];}	
+	?>		
+									   <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                            <input type="text" name="em" class="form-control has-feedback-left" id="inputSuccess2" placeholder="Email Address" value="<?php if (!empty($_POST['em'])) {echo htmlspecialchars($_POST['em']);}else if (isset($_COOKIE['remain1']) && empty($_POST)){echo $user->getcookie('remain1');} ?>">
+                                            <span class="fa fa-envelope form-control-feedback left" aria-hidden="true"></span>
+                                        </div>
+
+                                        <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                            <input type="password" name="pw"  class="form-control has-feedback-left" id="inputSuccess5" placeholder="Password">
+                                            <span class="fa fa-key form-control-feedback left" aria-hidden="true"></span>
+                                        </div>
+											  <p class="antispam">Leave this empty: <input type="text" name="url2" /></p>
+                                        <div class="ln_solid"></div>
+                                        <div class="form-group">
+                                            <div class="col-md-12">
+                                                <button type="submit" name="login" class="col-md-12 col-sm-12 col-xs-12 form-group btn btn-success">Login</button>
+                                            </div>
+                                        </div>
+
+                                    </form>

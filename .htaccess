@@ -1,0 +1,49 @@
+<IfModule dir_module>
+    DirectoryIndex index.html
+</IfModule>
+
+<IfModule mime_module>
+AddType application/x-httpd-php .php .html
+</IfModule>
+
+RewriteEngine On
+RewriteRule ^myquotes/([^|/]+)$ index.html?m=$1
+RewriteRule ^myquotes/([^|/]+)/$ index.html?m=$1
+RewriteRule ^myquotes/([^|/]+)/([0-9]+)$ index.html?m=$1&page=$2
+RewriteRule ^myquotes/([^|/]+)/([0-9]+)/$ index.html?m=$1&page=$2
+RewriteRule ^categories/quotes-about-([^|]+)/$ index.html?tags=$1
+RewriteRule ^categories/quotes-about-([^|]+)$ index.html?tags=$1
+RewriteRule ^page_([0-9]+)$ index.html?page=$1
+RewriteRule ^page_([0-9]+)/$ index.html?page=$1
+RewriteRule ^categories/([0-9]+)-quotes-about-([^|]+)$ index.html?page=$1&tags=$2
+RewriteRule ^categories/([0-9]+)-quotes-about-([^|]+)/$ index.html?page=$1&tags=$2
+RewriteRule ^category-list-([0-9]+)$ categories.html?page=$1
+RewriteRule ^category-list-([0-9]+)/$ categories.html?page=$1
+RewriteRule ^about-us$ about_us.html
+RewriteRule ^about-us/$ about_us.html
+RewriteRule ^contact$ contact_us.html
+RewriteRule ^contact/$ contact_us.html
+RewriteRule ^terms$ terms.html
+RewriteRule ^terms/$ terms.html
+RewriteRule ^privacy$ privacy.html
+RewriteRule ^privacy/$ terms.html
+RewriteRule ^author-list-([0-9]+)$ authors.html/?page=$1
+RewriteRule ^author-list-([0-9]+)/$ authors.html/?page=$1
+RewriteRule ^author/([^|]+)-quotes-([0-9]+)$ index.html?page=$2&names=$1
+RewriteRule ^author/([^|]+)-quotes-([0-9]+)/$ index.html?page=$2&names=$1
+RewriteRule ^categories-([0-9]+)$ categories.html?page=$1
+RewriteRule ^categories-([0-9]+).html/$ categories.html?page=$1
+RewriteRule ^author/([^|]+)-quotes$ index.html?names=$1
+RewriteRule ^author/([^|]+)-quotes/$ index.html?names=$1
+RewriteRule ^([^/.]+)$ search.html?q=$1 [L]
+RewriteRule ^([^/.]+)/$ search.html?q=$1 [L]
+RewriteRule ^([^/]+)-quotes/([0-9]+)$ search.html?q=$1&page=$2
+RewriteRule ^([^/]+)-quotes/([0-9]+)/$ search.html?q=$1&page=$2
+RewriteRule ^([a-zA-Z0-9\-\_\.]+)-quotes-([0-9]+)/([a-zA-Z0-9\-\_\.]+)$ quotes.html?qid=$2
+RewriteRule ^([a-zA-Z0-9\-\_\.]+)-quotes-([0-9]+)/([a-zA-Z0-9\-\_\.]+)/$ quotes.html?qid=$2
+IndexIgnore *
+
+
+
+ErrorDocument 404 http://localhost/quo/404.html
+ErrorDocument 403 http://localhost/quo/404.html

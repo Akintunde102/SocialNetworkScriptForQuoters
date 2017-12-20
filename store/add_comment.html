@@ -1,0 +1,15 @@
+<?php require_once('inc.php'); ?>
+                        <form class="col-md-12 form-horizontal form-label-left input_mask addcomment" style="background: #333;"  role="form" method="POST" action="http://<?=$site_address?>/addcomment.php?qid=<?=$_GET['qid']?>">
+                                         <div id="cresult"> </div>
+                                        <div class="item form-group" id="quote-group">
+                                            <div class="col-md-12 col-xs-12">
+                                            <textarea id="textarea" required="required" name="comment" style="margin-top: 10px;" class="form-control col-md-7 col-xs-12" auto-complete="no" placeholder="Comment..." /><?php if (!empty($_POST['quote'])) echo htmlspecialchars($_POST['quote']); ?></textarea>
+                                            </div>
+                                        </div>
+                                        <p class="antispam">Leave this empty: <input type="text" name="urladdc" /></p>
+                                        <div class="form-group">
+                                            <div class="col-md-12">
+                              <button name="comment" class="form-control col-md-7 col-xs-12"  type="submit" style="background: #444;color: #fff;margin: -7px 0 5px;" class="btn btn-success">Submit</button>
+                                            </div>
+                                        </div>
+                                    </form>

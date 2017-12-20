@@ -1,0 +1,34 @@
+<?php
+
+if (!empty($_SERVER['HTTP_REFERER']) && empty($_SESSION['refer_back'])){
+    if ($_SERVER['HTTP_REFERER'] != 'http://'.$site_address.'/login.html' && $_SERVER['HTTP_REFERER'] != 'http://'.$site_address.'/?log=out' ){$_SESSION['refer_back'] = $_SERVER['HTTP_REFERER'];}
+	 }
+	 if ($user->is_logged_in() == true){header("Location: $site_address");}
+	 
+	require_once('inc.php');
+	?>
+	<div id="rresult"> </div>
+                       	<div role="tabpanel" class="tab-pane fade active in" id="tab_content3">
+					  	                		
+ <form class="form-horizontal form-label-left input_mask reg" id="regForm" role="form" method="POST" action="http://<?=$site_address?>/reg.php">
+                                        <div id="fn-group" class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                            <input type="text" name="fn" class="form-control has-feedback-left" id="inputSuccess2" placeholder="Full Name" value="<?php if (!empty($_POST['fn'])) echo htmlspecialchars($_POST['fn']); ?>">
+                                            <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+                                        </div>
+                                        <div id="em-group" class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                            <input type="text" name="em"  class="form-control has-feedback-left" id="inputSuccess4" for="email" placeholder="Email" value="<?php if (!empty($_POST['em'])) echo htmlspecialchars($_POST['em']); ?>">
+                                            <span class="fa fa-envelope form-control-feedback left" aria-hidden="true"></span>
+                                        </div>
+                                        <div id="pw-group" class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                            <input type="password" name="pw"  class="form-control has-feedback-left" id="inputSuccess5" placeholder="Chosen Password">
+                                            <span class="fa fa-key form-control-feedback left" aria-hidden="true"></span>
+                                        </div>
+											  <p class="antispam">Leave this empty: <input type="text" name="url" /></p>
+                                        <div class="ln_solid"></div>
+                                        <div class="form-group">
+                                            <div class="col-md-12">
+                                                <button type="submit" name="submit" class="col-md-12 col-sm-12 col-xs-12 form-group btn btn-success">Sign Up & Quote</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                            </div>

@@ -1,0 +1,35 @@
+		<div id="menuF" class="headtop" style="display: block;">
+			<div class="row">
+				<div class="navbar-form">
+		<a href="http://<?=$site_address?>"><img class="logo" src="http://<?=$site_address?>/images/logo.png" /></a>
+	<form role="form"  style="display: inline-block;" method="GET" action="http://<?=$site_address?>/search.html"> 
+                        <input type="text" class="formtop" placeholder="Search" name="q" id="srch-term" placeholder="Search <?=$site['name']?>" value="<?=@$_GET['q'] ?>">
+                         <button class="btn btn-default"  type="submit" title="Search"><i class="glyphicon glyphicon-search"></i></button>
+                    </form>
+					</div>
+					</div>
+					</div>
+	
+
+	<div style="margin: 0 3px;">
+		
+		<?php if ($deviceType == 'phone'){ ?>
+			<div class="box">
+				<div class="box-header">
+				</div>
+				<div class="box-body">
+					<a href="http://<?=$site_address?>/index.html" class="btn btn-default btn-sm">Home</a>
+					<a href="http://<?=$site_address?>/<?php echo $wp->randquoteurl();?>" class="btn btn-default btn-sm">Random Quote</a>
+					<a href="http://<?=$site_address?>/author-list-1" class="btn btn-default btn-sm">Authors</a>
+					<a href="http://<?=$site_address?>/category-list-1" class="btn btn-default btn-sm">Categories</a>
+				</div>
+				<?php $wp->mlogged();?>
+			</div><?php }?>
+					
+				<span> </span> 	
+						
+						
+			<div class="clearfix"></div>
+			<!--- banner Slider starts Here --->
+			<script src="http://<?=$site_address?>/assets/js/responsiveslides.min.js"></script>
+		<!--End-slider-script-->

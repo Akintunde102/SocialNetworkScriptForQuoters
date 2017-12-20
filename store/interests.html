@@ -1,0 +1,27 @@
+<?php
+ 	require_once('inc.php');
+	$i= $wp->interests_form();
+	?>
+<form class="form-horizontal form-label-left input_mask reg" role="form" method="post" action="http://<?=$site_address?>/interests.html">
+                                       <legend>Update Interests<small><i>&nbsp;Seperate By commas</i></small></legend>
+									   <?php
+										//check for any errors
+	if(isset($i['err'])){
+		foreach($i['err'] as $i['err']){
+			echo '<p class="error"><i class="fa fa-asterisk"></i>&nbsp;'.$i['err'].'</p>';
+		}
+	}
+	
+		if (!empty($i['result'])){echo $i['result'];}	
+	?>
+                                    <div class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                           <textarea name="int" class="form-control has-feedback-left" placeholder="e.g. love,chrisitianity,religion,life,friendship"><?php if (!empty(trim($userDetails['interests']))){echo $userDetails['interests'];} ?></textarea>
+                                            <span class="fa fa-key form-control-feedback left" aria-hidden="true"></span>
+                                        </div>
+											  <p class="antispam">Leave this empty: <input type="text" name="urli" /></p>
+                                        <div class="ln_solid"></div>
+                                        <div class="form-group">
+                                            <div class="col-md-12">                                             <button type="submit" name="sub" class="col-md-12 col-sm-12 col-xs-12 form-group btn btn-success">Update Interests</button>
+                                            </div>
+                                        </div>
+                                    </form>

@@ -1,0 +1,35 @@
+<?php include('inc.php') ?>
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        
+     <?php include('store/head.html') ?>
+    </head>
+
+    <body>
+        
+        <!-- Top menu -->
+		
+		
+		<?php if ($deviceType != 'computer'){ include('store/header_mobile.html');}else{ include('store/header.html');}?>
+		
+	
+        <!--  Quotes -->
+        <div class="services-container" <?php if ($deviceType == 'computer'){echo 'style="height: 550px;"';} ?>>
+	        	<div class="row">
+	<?php $wp->display('one'); ?>
+		</div>
+	        </div>
+        </div>
+        <!-- Footer -->
+	
+	<?php include('store/footer.html') ?>
+	
+	<?php include('store/foot.html') ?>	
+
+       
+
+    </body>
+
+</html>

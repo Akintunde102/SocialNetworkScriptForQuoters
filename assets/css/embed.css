@@ -1,0 +1,14 @@
+.quotehood{
+  -webkit-animation-duration: 1s;
+  animation-duration: 2s;
+  animation-name: bounce;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;}
+  
+  
+  img {display: block;
+  height: auto;
+  float: left;
+  width:100%;
+  height: inherit;
+  border: 0;}

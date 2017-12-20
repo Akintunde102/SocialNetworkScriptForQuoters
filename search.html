@@ -1,0 +1,72 @@
+<?php include('inc.php') ?>
+<!DOCTYPE html>
+<html lang="en">
+	<?php
+	
+		if (!empty($_GET['q']))
+		{ 
+		
+			$q_o = $_GET['q'];
+			// strip whitespace, non case sensitive  
+			$q = strtolower($q_o);    
+			$q = trim ($q);
+			if (preg_match("/#(\w+)/",$q, $a) == true){$q = substr($a[0], 1);}
+			$header = "<a href=\"http://$site_address/search.html?q=$q\" >$q</a>";
+			$title = "Search Results for $q_o ";
+			$noerror = true;
+		}
+		else {$noerror = false; $string_empty = true; $string_err = '<div class="alert alert-danger">
+			Please Type in a Keyword below
+		</div>'; }
+		
+		
+	?>
+    <head>
+        
+     <?php include('store/head.html'); ?>
+    </head>
+
+    <body>
+        
+        <!-- Top menu -->
+		
+		
+	<?php if ($deviceType != 'computer'){ include('store/header_mobile.html');}else{ include('store/header.html');}?>
+		
+	
+		
+        <!--  Quotes -->
+        <div class="services-container">
+	        	<div class="row">
+					
+		<?php  
+			//Responsible for retrieving quotes
+	if ($noerror == true){
+if (!empty($_GET['q']))
+		{ 
+		echo '<input type="hidden" id="type" value="search" />';
+		echo '<input type="hidden" id="subtype" value="search" />';
+		echo '<input type="hidden" id="subtype_value" value="'.$_GET['q'].'" />';
+		}
+
+$wp->display('search');
+
+	}		
+			
+		
+		?>
+	
+                    </div>		
+		</div>
+        </div>
+        <!-- Footer -->
+	
+	<?php include('store/footer.html') ?>
+	
+	<?php include('store/foot.html') ?>	
+
+       
+
+    </body>
+
+</html>

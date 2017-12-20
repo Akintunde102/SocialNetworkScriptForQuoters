@@ -1,0 +1,56 @@
+<?php include('inc.php');//$user->restrict(); ?>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        
+     <?php include('store/head.html'); ?>
+    </head>
+
+    <body>    
+        <!-- Top menu -->
+		
+		
+		<?php if ($deviceType != 'computer'){ include('store/header_mobile.html');}else{ include('store/header.html');}?>
+		
+	<!--  Quotes -->
+        <div class="services-container" <?php if ($deviceType == 'computer'){echo 'style="height: 550px;"';} ?>>
+	        	<div class="row">
+					<?php 
+					if ($deviceType == 'computer'){$wp->lists(); $wp->adlist();	
+					echo '<div class="col-md-2">kjjkjk</div>';}
+					
+					
+			echo '<div class="col-middle" style="margin-top: 100px;">
+                    <div class="text-center text-center">
+                        <h1 class="error-number">404</h1>
+                        <h2>Sorry but we couldnt find this page</h2>
+                        <p>This page you are looking for does not exsist <a href="#">Report this?</a>
+                        </p>
+                        <div class="mid_center">
+                            <h3>Search</h3>
+                            <form action="http://'.$site_address.'/search.html" method="GET" >
+                                <div class="col-xs-12 form-group pull-right top_search">
+                                    <div class="input-group">
+                                        <input type="text" name="q" class="form-control" placeholder="Search for...">
+                                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">Go!</button>
+                        </span>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>';
+		?>
+					
+
+					</div>
+					</div>
+	
+        <!-- Footer -->
+	
+	<?php include('store/footer.html') ?>
+	
+	<?php include('store/foot.html') ?>
+    </body>
+</html>

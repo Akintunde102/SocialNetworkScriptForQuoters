@@ -1,0 +1,39 @@
+<?php require_once('inc.php');?>
+                     <div class="col-md-4 rt shadow" role="tabpanel" data-example-id="togglable-tabs"><div class="ag" id="myTab" role="tablist"><a class="btn btn-primary" href="#tab_content1" role="tab" data-toggle="tab" aria-expanded="true" > Add Text Quotes
+                          </a><a href="#tab_content2" role="tab" data-toggle="tab" aria-expanded="false" class="btn btn-primary" > Add Image Quotes
+                          </a></div>
+						  <div id="myTabContent" class="tab-content" role="tablist">
+                            	<div role="tabpanel" class="tab-pane fade" id="tab_content1" >
+<div id="fresult"> </div>								
+							<form class="form-horizontal form-label-left input_mask addquote" role="form" method="POST" action="http://<?=$this->site_address?>/addquote.php">
+								   
+                                        <div  id="quote-group" class="col-md-12 col-sm-12 col-xs-12 form-group has-feedback">
+                                            <textarea name="quote" class="form-control has-feedback-left" id="inputSuccess2" placeholder="Quote" cols="40" rows="10" ><?php if (!empty($_POST['quote'])) echo htmlspecialchars($_POST['quote']); ?></textarea>
+                                        </div>
+										 <div class="checkbox col-md-12 col-sm-12 col-xs-12 form-group" style="margin-top:-13px;margin-bottom:3px;">
+                                                    <label>
+                                                        <input name="a" type="checkbox" class="flat" value="yes" /> Post As Anonymous
+                                                    </label>
+                                                </div>
+											  <p class="antispam">Leave this empty: <input type="text" name="urladd" /></p>
+                                        <div class="ln_solid"></div>
+                                        <div>
+                                            <div class="col-md-12">
+                                                <button type="submit" name="submit" class="col-md-12 col-sm-12 col-xs-12 form-group btn btn-success">Quote</button>
+                                            </div>
+                                        </div>
+                                    </form>
+									</div>
+									<div role="tabpanel" class="tab-pane fade" id="tab_content2" >				
+			<div id="upload-wrapperi">
+<div id="outputi"></div>
+<div id="progressboxi" style="display:none;"><div id="progressbari"></div><div id="statustxti">0%</div></div>
+<h3>Add Image</h3>
+<form action="http://<?=$this->site_address?>/processim.php" onSubmit="return false" method="post" enctype="multipart/form-data" id="MyUploadFormi">
+<textarea name="desc" id="desci" placeholder="description" class="form-control" cols="3" rows="3" ></textarea>
+<input name="image_file" id="imageInputi" class="form-control" type="file" />
+<input type="submit"  id="submit-btni" value="Add Image" />
+<img src="images/ajax-loader.gif" id="loading-imgi" style="display:none;" alt="Please Wait"/>
+</form>
+</div>			</div>
+									</div>

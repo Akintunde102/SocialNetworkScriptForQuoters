@@ -1,0 +1,29 @@
+ <!-- Javascript -->
+<script type="text/javascript" src="http://<?=$site_address?>/assets/js/jquery.lazy.min.js"></script>
+        <script src="http://<?=$site_address?>/assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="http://<?=$site_address?>/assets/js/bootstrap-hover-dropdown.min.js"></script>
+        <script src="http://<?=$site_address?>/assets/js/jquery.backstretch.min.js"></script>
+        <script src="http://<?=$site_address?>/assets/js/wow.min.js"></script>
+        <script src="http://<?=$site_address?>/assets/js/retina-1.1.0.min.js"></script>
+        <script src="http://<?=$site_address?>/assets/js/jquery.magnific-popup.min.js"></script>
+        <script src="http://<?=$site_address?>/assets/flexslider/jquery.flexslider-min.js"></script>
+        <script src="http://<?=$site_address?>/assets/js/jflickrfeed.min.js"></script>
+        <script src="http://<?=$site_address?>/assets/js/masonry.pkgd.min.js"></script>
+        <script src="http://<?=$site_address?>/assets/js/jquery.ui.map.min.js"></script>
+        <script src="http://<?=$site_address?>/assets/js/scripts.js"></script>
+        <script src="http://<?=$site_address?>/assets/datatables/jquery.dataTables.min.js"></script>
+        <script src="http://<?=$site_address?>/assets/datatables/dataTables.bootstrap.min.js"></script>
+        <script src="http://<?=$site_address?>/assets/icheck/icheck.min.js"></script>
+     
+         <script>
+  $(function () {
+        $('#comment').DataTable({
+          "paging": true
+        });
+      });
+    </script>
+	<?php
+				//To cache the whole file
+					if ($cache_on){$wp->cache();}
+					$wp->getRuntime($stime);
+				?>

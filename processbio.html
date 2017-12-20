@@ -1,0 +1,8 @@
+<?php include('inc.php');
+
+//continue only if $_POST is set and it is a Ajax request
+if(isset($_POST)){
+$sth = $db->prepare("UPDATE members SET bio=:bio WHERE email='{$_SESSION['email']}'");
+			$sth->bindValue (":bio", $_POST['bio']);
+			$sth->execute();
+}

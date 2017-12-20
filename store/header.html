@@ -1,0 +1,53 @@
+<?php // if (empty($_SESSION['timeDiff'])){ $ReferBack = $_SERVER['REQUEST_URI']; header("Location: $ReferBack");}
+?>
+<div id="menuF" class="headtop" style="display: block;">
+		<div class="container">
+			<div class="row headerLeft">
+			<div class="col-md-13">
+				<div class="navbar-form navbar-left">
+		<a href="http://<?=$site_address?>">	<img class="logo" src="http://<?=$site_address?>/images/logo.png" /></a>
+	<form role="form"  style="display: inline-block;" method="GET" action="http://<?=$site_address?>/search.html"> 
+                        <input type="text" class="search_width form-control" placeholder="Search" name="q" id="srch-term" placeholder="Search <?=$site['name']?>" value="<?=@$_GET['q'] ?>">
+                         <button class="btn btn-default"  type="submit" title="Search"><i class="glyphicon glyphicon-search"></i></button>
+                    </form>
+					</div>	
+					</div>
+				<div class="fnav">
+					<div class="navmenu" style="text-align: center;">					
+						<ul id="menu">
+							<?php echo $wp->NavUrl(); ?>
+						</ul>
+					</div>
+				</div>
+			</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="white">						
+						
+			<div class="clearfix"></div>
+			<!--- banner Slider starts Here --->
+			<script src="http://<?=$site_address?>/assets/js/responsiveslides.min.js"></script>
+			<script>
+			    // You can also use "$(window).load(function() {"
+			    $(function () {
+					// Slideshow 4
+					$("#slider4").responsiveSlides({
+						auto: true,
+						pager: true,
+						nav: true,
+						speed: 500,
+						namespace: "callbacks",
+						before: function () {
+							$('.events').append("<li>before event fired.</li>");
+						},
+						after: function () {
+							$('.events').append("<li>after event fired.</li>");
+						}
+					});
+					
+			    });
+			</script>
+		<!--End-slider-script-->
+		<div class="container">
