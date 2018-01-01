@@ -1,4 +1,4 @@
-# Social Network Script
+#Social Network Script
 
 **Name:** Social Network Script <br/>
 **Contributors:** Akintunde Jegede <br/>
@@ -10,15 +10,15 @@
 **Live Demo Address:** quotes.akin.com.ng <br/>
 
 
-## Short Summary:
+##Short Summary:
 This script is a multifunctional blogging + Social Networking script that has almost all the features of a social network
 
 
-## Description:
+##Description:
 This script is a social network script that is capable of allowing text and image posts from users that are registered and verified by mail. It has an automatic text to image conversion  system  that allows you to choose from quite a large store of backgrounds picture, it also allows you to use your own custom background. The script also features a strong notification system that alerts you of activities on your profile and posts. It has an interests fied which when filled provides an inteeliligent feed section that shows only the thing you claim to be interested in. It also has an autotagging section which automatically tags your posts with numerous synonymous tags.
 
 
-## Features
+##Features
 1) Autotagging System
 2) Hashtag System
 3) Fulltext Custom-made Search
@@ -33,7 +33,7 @@ Below is a preview:
 ![Preview](http://quotes/akin.com.ng/a.PNG)
 
 
-## How it works:
+##How it works:
 
 The script relies on certain supporting pages to function via the backend. They include:
 1) Inc.php (Contains Globally Declared Variables,Classes and Functions)
@@ -44,17 +44,17 @@ The script relies on certain supporting pages to function via the backend. They 
 6) libs/resizer.php (contains functions for resizing  gif functions)
 7) libs/simpleimage.php(contains text to image functions)
 
-## Store Folder
+##Store Folder
 This contain html snippets, included and used a several times on the website
 
-## Cache Folder
+##Cache Folder
 Stores cached pages of the website when $cache = 1 in the inc.php
 
 
-## assets
+##assets
 This stores all js and css dependencies. it also houses the sendmail.php that can power any mail sending form on the site
 
-## ad
+##ad
 Contains 'materials' for a deprecated ad features
 
 
@@ -65,18 +65,15 @@ fixim.php: Adds Descriptive Properties to All Images ON site for seo poperties
 fixcomments.php: Fixes errors with comments
 fixtags.php: Auto-tags all yet to be tagged posts 
 
-### Other Pages
+###Other Pages
 All other pages are self-explanatory on their own.
 
-** The header and footer pages can be found in the store/ folder together with all other similar files.
+**The header and footer pages can be found in the store/ folder together with all other similar files.**
 
 
 All other unstated files should be considered trivial.
 
-
-
-
-## Installation 
+##Installation 
 Installation is very easy. Just follow the following steps
 
 1. Download this script as a zip file (from [here](https://github.com/Akintunde102/AKINBLOG/archive/master.zip))
@@ -89,17 +86,17 @@ Installation is very easy. Just follow the following steps
 Test Email: fliptee@gmail.co
 Test Pass: 1234
 
-## Initial Version
+##Initial Version
 1.0
 
-## Contact Me
+##Contact Me
 **Discord**: @akintunde <br/>
 **Email:** jegedeakintunde[at]gmail.com<br/>
 **utopian.io:** @akintunde <br/>
 **github:** @akintunde102<br/>
 
 
-## More ScreenShots
+##More ScreenShots
 ![Preview](http://quotes.akin.com.ng/a.PNG)
 ![Preview](http://quotes.akin.com.ng/b.PNG)
 ![Preview](http://quotes.akin.com.ng/c.PNG)
