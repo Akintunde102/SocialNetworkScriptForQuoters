@@ -38,7 +38,7 @@ Below is a preview:
 The script relies on certain supporting pages to function via the backend. They include:
 1) Inc.php (Contains Globally Declared Variables,Classes and Functions)
 2) libs/imdet (contains files that edits and updates image properties and attributes for SEO reasons)
-3) 	libs/class.user.php (contains functions for handling login and registration )
+3) libs/class.user.php (contains functions for handling login and registration )
 4) libs/major_class.php (contains major site functions)
 5) libs/pdo_pagination.php (heavily used in major_class.php for pagination)
 6) libs/resizer.php (contains functions for resizing  gif functions)
@@ -51,19 +51,19 @@ This contain html snippets, included and used a several times on the website
 Stores cached pages of the website when $cache = 1 in the inc.php
 
 
-## assets
+## Assets
 This stores all js and css dependencies. it also houses the sendmail.php that can power any mail sending form on the site
 
-## ad
+## Ad
 Contains 'materials' for a deprecated ad features
 
 
 ## Cron Job Pages
 These pages perform certain automated works on the site. They Include:
-sitemap.php: Updates the sitemaps when run
-fixim.php: Adds Descriptive Properties to All Images ON site for seo poperties
-fixcomments.php: Fixes errors with comments
-fixtags.php: Auto-tags all yet to be tagged posts 
+sitemap.php: Updates the sitemaps when run <br/>
+fixim.php: Adds Descriptive Properties to All Images ON site for seo poperties<br/>
+fixcomments.php: Fixes errors with comments <br/>
+fixtags.php: Auto-tags all yet to be tagged posts <br/> 
 
 ### Other Pages
 All other pages are self-explanatory on their own.
@@ -83,7 +83,8 @@ Installation is very easy. Just follow the following steps
 3. That's it 
 4. Just view from your server domain name (or from localhost if you are in a local environment)
 
-Test Email: fliptee@gmail.co
+<br/>
+Test Email: fliptee@gmail.co<br/>
 Test Pass: 1234
 
 ## Initial Version
